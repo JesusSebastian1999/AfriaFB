@@ -23,9 +23,9 @@ customElements.define("herramientas-detalle", class extends HTMLElement {
 
      <!-- Agregar alumnos -->
      <li class="nav-item">
-         <a class="nav-link" href="agregarAlumnos.html">
+         <a class="nav-link" href="listaAlumno.html">
              <i class="fas fa-user"></i>
-             <span>Agregar alumnos</span></a>
+             <span>Lista de alumnos</span></a>
      </li>
      <li class="nav-item">
          <a class="nav-link" href="listaGrupo.html">

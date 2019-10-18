@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Lista de los grupos</title>
+    <title>Agregar Alumnos</title>
 
     <!-- Custom fonts for this template-->
     <link href="../../vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
@@ -21,7 +21,14 @@
     <link href="../../css/sb-admin-2.css" rel="stylesheet">
 
     <script src="../../lib/polycustom.js"></script>
+
+    <script src="/__/firebase/7.2.0/firebase-app.js"></script>
+    <script src="/__/firebase/7.2.0/firebase-firestore.js"></script>
+    <script src="/__/firebase/6.0.2/firebase-storage.js"></script>
+    <script src="/__/firebase/init.js"></script>
     <script type="module" src="control/ctrlMenuProfe.js"></script>
+    <script type="module" src="control/ctrlcampos-alumnos.js"></script>
+    <script type="module" src="control/ctrlforanea-basica.js"></script>
 </head>
 
 <body id="page-top">
@@ -30,7 +37,6 @@
     <div id="wrapper">
 
         <herramientas-detalle agrega></herramientas-detalle>
-
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -124,57 +130,62 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!--Codigo de firebase-->
+                    <!-- Agregar alumnos -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Listas de Grupos</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Grupo</h6>
                         </div>
                         <div class="card-body">
-                            <div class="rot table-responsive">
+                            <form id="vista" class="user">
+                                <h1><output id="título"><progress max="100">Cargando…</progress></h1>
+                                <div class="form-group row mb-4">
 
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Grupos</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tb">
-                                        <td><progress max="100">Cargando…</progress></td>
-                                    </tbody>
-                                </table>
-                                <a href="grupoNuevo.html" class="btn btn-success btn-icon-split">
+                                    <div class="col-sm-6 mb-2">
+                                        <input id="nombres" type="text" class="form-control form-control-user"
+                                            placeholder="Nombre(s)">
+                                    </div>
+                                    <div class="col-sm-6 mb-2">
+                                        <input id="apellido_paterno" type="text" class="form-control form-control-user"
+                                            placeholder="Apellido Paterno">
+                                    </div>
+                                    <div class="col-sm-6 mb-2">
+                                        <input id="apellido_materno" type="text" class="form-control form-control-user"
+                                            placeholder="Apellido Materno">
+                                    </div>
+                                    <div class="col-sm-6 mb-2">
+                                        <input id="email" type="email" class="form-control form-control-user"
+                                            placeholder="Correo">
+                                    </div>
+                                    <campos-alumnos></campos-alumnos>
+                                </div>
+                                <a href="listaAlumno.html" class="btn btn-info btn-icon-split">
                                     <span class="icon text-white-50">
-                                        <i class="fas fa-plus"></i>
+                                        <i class="fas fa-arrow-left"></i>
                                     </span>
-                                    <span class="text">Agregar</span>
+                                    <span class="text">Cancelar</span>
                                 </a>
-                            </div>
+                                <button type="submit" class="btn btn-warning btn-icon-split">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-pen"></i>
+                                    </span>
+                                    <span class="text">Modificar</span>
+                                </button>
+                                <button type="button" id="eliminar" class="btn btn-danger btn-icon-split">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </span>
+                                    <span class="text">Eliminar</span>
+                                </button>
+
+                            </form>
                         </div>
+
                     </div>
-
-                    <footer is="mi-footer"></footer>
-                    <script src="/__/firebase/7.2.0/firebase-app.js"></script>
-                    <script src="/__/firebase/7.2.0/firebase-firestore.js"></script>
-                    <script src="/__/firebase/init.js"></script>
-                    <script type="module" src="control/ctrllistaGrupos.js">
-
-                    </script>
-
-
-
-
-
-                    <!--Fin de codigo de firebase-->
-                    <!-- grupos -->
-
-                    <!--Fin grupos -->
-
                 </div>
-                <!-- /.container-fluid -->
+                <!-- fin Agregar alumnos -->
 
             </div>
-            <!-- End of Main Content -->
-
+            <!-- /.container-fluid -->
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
@@ -183,9 +194,14 @@
                     </div>
                 </div>
             </footer>
-
         </div>
-        <!-- End of Content Wrapper -->
+
+        <!-- End of Main Content -->
+
+
+
+    </div>
+    <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
@@ -231,7 +247,9 @@
     <!-- Page level custom scripts -->
     <script src="../../js/demo/chart-area-demo.js"></script>
     <script src="../../js/demo/chart-pie-demo.js"></script>
-    <!--script src="control/ctrllistaAlumno.js"></script-->
+
+    <script src="control/ctrlAlumno.js" type="module"></script>
+
 </body>
 
 </html>

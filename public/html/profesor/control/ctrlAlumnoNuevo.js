@@ -8,30 +8,32 @@ async function carga_foraneas() {
    document.vista.addEventListener("submit", guarda);
  } catch (e) {
    muestraError(e)
-   document.location = "";
+   document.location = "listaAlumno.html";
  }
 }
 async function guarda(evt) {
  try {
    evt.preventDefault();
-   const USU_ID = document.vista.cue.value.trim();
-   const USU_UP_ID = USU_ID.toUpperCase();
-   const usuRef = firestore.collection("USUARIO").doc(USU_UP_ID);
+   const NOMBRES = document.vista.nombres.value.trim();
+   const APELLIDO_PATERNO = document.vista.apellido_paterno.value.trim();
+   const APELLIDO_MATERNO = document.vista.apellido_materno.value.trim();
+   const EMAIL = document.vista.email.value.trim();
+   const usuRef = firestore.collection("ALUMNOS").doc();
    await firestore.runTransaction(async tx => {
      const doc = await tx.get(usuRef);
      if (doc.exists) {
-       throw new Error("El cue ya está registrado.");
+       throw new Error("El alumno ya está registrado.");
      } else {
        await tx.set(usuRef, {
-         PAS_ID: document.vista.pasatiempo.valor,
-         ROL_IDS: document.vista.roles.valor,
-         USU_ID
+         GRUPO_NOMBRE: document.vista.grupo.valor,
+         NOMBRES,
+         APELLIDO_PATERNO,
+         APELLIDO_MATERNO,
+         EMAIL
        });
      }
    });
-   await usuRef.update(
-     { USU_AVATAR: await document.vista.avatar.subeArchivo(USU_UP_ID) });
-   document.location = "index.html";
+   document.location = "listaAlumno.html";
  } catch (e) {
    muestraError(e);
  }

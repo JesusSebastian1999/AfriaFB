@@ -9,19 +9,19 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Lista de los grupos</title>
+    <title>Agregar Alumnos</title>
 
     <!-- Custom fonts for this template-->
     <link href="../../vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="../../css/sb-admin-2.css" rel="stylesheet">
 
-    <script src="../../lib/polycustom.js"></script>
+    <script type="module" src="control/ctrlcampos-alumnos.js"></script>
+    <script type="module" src="control/ctrlforanea-basica.js"></script>
     <script type="module" src="control/ctrlMenuProfe.js"></script>
+
 </head>
 
 <body id="page-top">
@@ -30,7 +30,6 @@
     <div id="wrapper">
 
         <herramientas-detalle agrega></herramientas-detalle>
-
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -44,19 +43,17 @@
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
+            <i class="fa fa-bars"></i>
+          </button>
 
                     <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small"
-                                placeholder="Buscar en áfria..." aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar en áfria..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
                             </div>
                         </div>
                     </form>
@@ -68,22 +65,18 @@
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
                                         </div>
                                     </div>
                                 </form>
@@ -92,14 +85,12 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Utonio</span>
                                 <img class="img-profile rounded-circle" src="">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
                                 </a>
@@ -124,50 +115,46 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!--Codigo de firebase-->
+                    <!-- Agregar alumnos -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Listas de Grupos</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Agregar alumnos</h6>
                         </div>
                         <div class="card-body">
-                            <div class="rot table-responsive">
-
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Grupos</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tb">
-                                        <td><progress max="100">Cargando…</progress></td>
-                                    </tbody>
-                                </table>
-                                <a href="grupoNuevo.html" class="btn btn-success btn-icon-split">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-plus"></i>
-                                    </span>
-                                    <span class="text">Agregar</span>
-                                </a>
+                                <form name="vista" class="user">
+                                    <div class="form-group row mb-4">
+                                        <div class="col-sm-6 mb-2">
+                                            <input name="nombres" type="text" class="form-control form-control-user" placeholder="Nombre(s)">
+                                        </div>
+                                        <div class="col-sm-6 mb-2">
+                                            <input name="apellido_paterno" type="text" class="form-control form-control-user" placeholder="Apellido Paterno">
+                                        </div>
+                                        <div class="col-sm-6 mb-2">
+                                                <input name="apellido_materno" type="text" class="form-control form-control-user" placeholder="Apellido Materno">
+                                            </div>
+                                        <div class="col-sm-6 mb-2">
+                                            <input name="email" type="email" class="form-control form-control-user" placeholder="Correo">
+                                        </div>
+                                             <campos-alumnos></campos-alumnos>
+                                        
+                                    </div>
+                                    <a href="listaAlumno.html" class="btn btn-info btn-icon-split">
+                                            <span class="icon text-white-50">
+                                                <i class="fas fa-arrow-left"></i>
+                                            </span>
+                                            <span class="text">Cancelar</span>
+                                    </a>
+                                    <button type="submit" class="btn btn-success btn-icon-split">
+                                        <span class="icon text-white-50">
+                                          <i class="fas fa-save"></i>
+                                        </span>
+                                        <span class="text">Guardar</span>
+                                    </button>
+                                </form>
                             </div>
-                        </div>
+
                     </div>
-
-                    <footer is="mi-footer"></footer>
-                    <script src="/__/firebase/7.2.0/firebase-app.js"></script>
-                    <script src="/__/firebase/7.2.0/firebase-firestore.js"></script>
-                    <script src="/__/firebase/init.js"></script>
-                    <script type="module" src="control/ctrllistaGrupos.js">
-
-                    </script>
-
-
-
-
-
-                    <!--Fin de codigo de firebase-->
-                    <!-- grupos -->
-
-                    <!--Fin grupos -->
+                    <!-- fin Agregar alumnos -->
 
                 </div>
                 <!-- /.container-fluid -->
@@ -196,8 +183,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -231,7 +217,13 @@
     <!-- Page level custom scripts -->
     <script src="../../js/demo/chart-area-demo.js"></script>
     <script src="../../js/demo/chart-pie-demo.js"></script>
-    <!--script src="control/ctrllistaAlumno.js"></script-->
+
+   <script src="/__/firebase/6.0.2/firebase-app.js"></script>
+   <script src="/__/firebase/6.0.2/firebase-firestore.js"></script>
+   <script src="/__/firebase/6.0.2/firebase-storage.js"></script>
+   <script src="/__/firebase/init.js"></script>
+   <script type="module" src="control/ctrlAlumnoNuevo.js"></script>
+
 </body>
 
 </html>

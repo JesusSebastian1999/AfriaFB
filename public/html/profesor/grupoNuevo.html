@@ -207,24 +207,7 @@
     <script src="/__/firebase/7.2.0/firebase-app.js"></script>
     <script src="/__/firebase/7.2.0/firebase-firestore.js"></script>
     <script src="/__/firebase/init.js"></script>
-    <script type="module">
-            import { error } from "../../lib/util.js";
-            const firestore = firebase.firestore();
-            firestore.enablePersistence()
-              .catch(error)
-              .then(() => vista.addEventListener("submit", guarda));
-            async function guarda(evt) {
-              try {
-                evt.preventDefault();
-                const GRUPO_NOMBRE = grupo.value.trim();
-                const modelo = { GRUPO_NOMBRE };
-                await firestore.collection("GRUPOS").add(modelo);
-                document.location = "listaGrupo.html";
-              } catch (e) {
-                error(e)
-              }
-            }
-          </script>
+    <script src="control/ctrlgrupoNuevo.js" type="module"></script>
 </body>
 
 </html>
