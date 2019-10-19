@@ -1,24 +1,21 @@
-import { error } from "../../../lib/util.js";
+import { error, texto } from "../../../lib/util.js";
+import { carga_grupos} from "./ctrlforaneas.js";
             const parametros = new URLSearchParams(location.search);
-            const id = parametros.get("id");
+            const ID_ALUMNO = parametros.get("id");
             const firestore = firebase.firestore();
-            firestore.enablePersistence()
-              .catch(error)
-              .then(busca);
+            busca();
             async function busca() {
               try {
-                const doc = await firestore.collection("ALUMNOS").doc(id).get();
+                const doc = await firestore.collection("ALUMNOS").doc(ID_ALUMNO).get();
                 if (doc.exists) {
+                  await carga_grupos();
                   const modelo = doc.data();
-                  document.title = modelo.NOMBRES;
-                  document.title = modelo.APELLIDO_PATERNO;
-                  document.title = modelo.APELLIDO_MATERNO;
-                  document.title = modelo.EMAIL;
-                  título.value = modelo.NOMBRES;
-                  nombres.value = modelo.NOMBRES;
-                  apellido_paterno.value = modelo.APELLIDO_PATERNO;
-                  apellido_materno.value = modelo.APELLIDO_MATERNO;
-                  email.value = modelo.EMAIL;
+                  document.vista.grupo.valor = texto(modelo.GRUPO_NOMBRE);
+                  document.vista.nombres.value = modelo.NOMBRES;
+                  document.vista.apellido_paterno.value = modelo.APELLIDO_PATERNO;
+                  document.vista.apellido_materno.value = modelo.APELLIDO_MATERNO;
+                  document.vista.email.value = modelo.EMAIL;
+                  document.vista.título.value = modelo.NOMBRES;  
                   vista.addEventListener("submit", guarda);
                   eliminar.addEventListener("click", elimina);
                 } else {
@@ -31,12 +28,13 @@ import { error } from "../../../lib/util.js";
             async function guarda(evt) {
               try {
                 evt.preventDefault();
-                const NOMBRES = nombres.value.trim();
-                const APELLIDO_PATERNO = apellido_paterno.value.trim();
-                const APELLIDO_MATERNO = apellido_materno.value.trim();
-                const EMAIL = email.value.trim();
-                const modelo = { NOMBRES,APELLIDO_PATERNO,APELLIDO_MATERNO,EMAIL};
-                await firestore.collection("ALUMNOS").doc(id).set(modelo);
+                const NOMBRES = vista.nombres.value.trim();
+                const APELLIDO_PATERNO = vista.apellido_paterno.value.trim();
+                const APELLIDO_MATERNO = vista.apellido_materno.value.trim();
+                const EMAIL = vista.email.value.trim();
+                const GRUPO_NOMBRE = vista.grupo.value;
+                const modelo = { NOMBRES,APELLIDO_PATERNO,APELLIDO_MATERNO,EMAIL,GRUPO_NOMBRE};
+                await firestore.collection("ALUMNOS").doc(ID_ALUMNO).set(modelo);
                 document.location = "listaAlumno.html";
               } catch (e) {
                 error(e)
@@ -44,7 +42,7 @@ import { error } from "../../../lib/util.js";
             }
             async function elimina() {
               try {
-                await firestore.collection("ALUMNOS").doc(id).delete();
+                await firestore.collection("ALUMNOS").doc(ID_ALUMNO).delete();
                 document.location = "listaAlumno.html";
               } catch (e) {
                 error(e)

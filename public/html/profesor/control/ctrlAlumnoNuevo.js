@@ -18,7 +18,8 @@ async function guarda(evt) {
    const APELLIDO_PATERNO = document.vista.apellido_paterno.value.trim();
    const APELLIDO_MATERNO = document.vista.apellido_materno.value.trim();
    const EMAIL = document.vista.email.value.trim();
-   const usuRef = firestore.collection("ALUMNOS").doc();
+   const ID_ALUMNO = EMAIL.toUpperCase();
+   const usuRef = firestore.collection("ALUMNOS").doc(ID_ALUMNO);
    await firestore.runTransaction(async tx => {
      const doc = await tx.get(usuRef);
      if (doc.exists) {

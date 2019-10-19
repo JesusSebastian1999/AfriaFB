@@ -54,8 +54,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small"
                                 placeholder="Buscar en áfria..." aria-label="Search" aria-describedby="basic-addon2">
@@ -136,25 +135,26 @@
                             <h6 class="m-0 font-weight-bold text-primary">Grupo</h6>
                         </div>
                         <div class="card-body">
-                            <form id="vista" class="user">
-                                <h1><output id="título"><progress max="100">Cargando…</progress></h1>
+
+                            <form name="vista" id="vista" class="user">
+                                <h1><output name="título"><progress max="100">Cargando…</progress></h1>
                                 <div class="form-group row mb-4">
 
                                     <div class="col-sm-6 mb-2">
-                                        <input id="nombres" type="text" class="form-control form-control-user"
-                                            placeholder="Nombre(s)">
+                                        <input name="nombres" type="text" class="form-control form-control-user"
+                                            placeholder="Nombre(s)" required>
                                     </div>
                                     <div class="col-sm-6 mb-2">
-                                        <input id="apellido_paterno" type="text" class="form-control form-control-user"
-                                            placeholder="Apellido Paterno">
+                                        <input name="apellido_paterno" type="text" class="form-control form-control-user"
+                                            placeholder="Apellido Paterno" required>
                                     </div>
                                     <div class="col-sm-6 mb-2">
-                                        <input id="apellido_materno" type="text" class="form-control form-control-user"
-                                            placeholder="Apellido Materno">
+                                        <input name="apellido_materno" type="text" class="form-control form-control-user"
+                                            placeholder="Apellido Materno" required>
                                     </div>
                                     <div class="col-sm-6 mb-2">
-                                        <input id="email" type="email" class="form-control form-control-user"
-                                            placeholder="Correo">
+                                        <input name="email" type="email" class="form-control form-control-user"
+                                            placeholder="Correo" required>
                                     </div>
                                     <campos-alumnos></campos-alumnos>
                                 </div>

@@ -4,7 +4,7 @@ customElements.define("campos-alumnos", class extends HTMLElement {
    this.innerHTML = /*html*/
      `  <p>
         <label>
-             <select is="foranea-basica" name="grupo">
+             <select is="foranea-basica" id="grupo">
             </select>
         </label>
         </p>
