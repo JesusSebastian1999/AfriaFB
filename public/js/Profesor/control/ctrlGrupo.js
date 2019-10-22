@@ -26,7 +26,8 @@ import { error } from "../../../lib/util.js";
               try {
                 evt.preventDefault();
                 const GRUPO_NOMBRE = grupo.value.trim();
-                const modelo = { GRUPO_NOMBRE };
+                const id = GRUPO_NOMBRE;
+                const modelo = { GRUPO_NOMBRE};
                 await firestore.collection("GRUPOS").doc(id).set(modelo);
                 document.location = "listaGrupo.html";
               } catch (e) {

@@ -1,4 +1,4 @@
-import { error } from "../../../lib/util.js";
+import { error, url, cod } from "../../../lib/util.js";
             const firestore = firebase.firestore();
             firestore.enablePersistence()
               .catch(error)
@@ -26,3 +26,28 @@ import { error } from "../../../lib/util.js";
                 error(e)
               }
             }
+            
+                        
+            function consulta() {
+                firebase.firestore().collection("GRUPOS").onSnapshot(
+                    querySnapshot => {
+                        tb.innerHTML = "";
+                        querySnapshot.forEach(doc => {
+                            const modelo = doc.data();
+                            tb.innerHTML += /*html*/
+                                `<tr>
+                                    <td><a>
+                                    ${cod(modelo.GRUPO_NOMBRE)}
+                                    </a></td>
+                                    <td>
+                                      <a href="grupo.html?id=${url(doc.id)}" class="btn btn-warning btn-circle">
+                                      <i class="fas fa-pen"></i>
+                                      </a>
+                                    </td>
+                                </tr>`;
+                        });
+                    },
+                    error);
+            }
+
+            consulta();

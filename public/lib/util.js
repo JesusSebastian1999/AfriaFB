@@ -48,4 +48,40 @@ export function texto(s, p) {
  export function copiaAttrBool(origen, atributo, atributoNuevo) {
   return origen.hasAttribute(atributo) ? eh(texto(atributoNuevo, atributo)) : "";
  }
- 
+//InicioSesion
+export function interseccion(a, b) {
+  const arrA = arr(a);
+  const arrB = arr(b);
+  return arrA.filter(elemA => arrB.indexOf(elemA) >= 0);
+ }
+ export function hayUsuario(user) {
+  return user && user.email;
+ }
+ export function protege(ALUMNOS) {
+  return new Promise((resolve, reject) => {
+    if (!ALUMNOS || ALUMNOS.length === 0) {
+      resolve();
+    } else {
+      firebase.auth().onAuthStateChanged(
+        async user => {
+          try {
+            if (hayUsuario(user)) {
+              const doc = await firebase.firestore().collection("USUARIO")
+                .doc(user.email.toUpperCase()).get();
+              if (doc.exists && interseccion(ALUMNOS, doc.data().ROL).length > 0) {
+                resolve();
+              } else {
+                throw new Error("No autorizado.");               
+              }
+            } else {
+              throw new Error("Falta iniciar sesión.");
+            }
+          } catch (e) {
+            reject(e);
+          }
+        },
+        reject);
+    }
+  });
+ }
+//Fin inicio sesion 

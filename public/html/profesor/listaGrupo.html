@@ -22,6 +22,10 @@
 
     <script src="../../lib/polycustom.js"></script>
     <script type="module" src="../../js/Profesor/control/ctrlMenuProfe.js"></script>
+    <script src="/__/firebase/7.2.0/firebase-app.js"></script>
+    <script src="/__/firebase/7.2.0/firebase-firestore.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <script src="../../js/Profesor/control/ctrlgrupoNuevo.js" type="module"></script>
 </head>
 
 <body id="page-top">
@@ -130,9 +134,10 @@
                             <h6 class="m-0 font-weight-bold text-primary">Listas de Grupos</h6>
                         </div>
                         <div class="card-body">
-                            <div class="rot table-responsive">
+                            <!--TABLA DONDE SE MUESTRA LOS GRUPOS EXISTENTES-->
+                            <div id="tablaG" class="rot table-responsive">
 
-                                <table class="table">
+                                <table  class="table">
                                     <thead>
                                         <tr>
                                             <th>Grupos</th>
@@ -142,23 +147,47 @@
                                         <td><progress max="100">Cargando…</progress></td>
                                     </tbody>
                                 </table>
-                                <a href="grupoNuevo.html" class="btn btn-success btn-icon-split">
+                                <button onclick="Mostrar();" class="btn btn-success btn-icon-split">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-plus"></i>
                                     </span>
                                     <span class="text">Agregar</span>
-                                </a>
+                                </button>
                             </div>
+                            <!--TERMINO DE LA TABLA DE LISTAR GRUPOS-->
+                            <script>
+                                function Mostrar(){
+                                    document.getElementById("vista").style.display="block";
+                                    document.getElementById("tablaG").style.display="none";
+                                }
+                            </script>
+                            <!--FORMULARIO PARA INGRESAR UN NUEVO GRUPO-->
+                            <form id="vista" class="user" style="display: none">
+                                <div class="form-group row mb-4">
+                                    <div class="col-sm-6 mb-2">
+                                        <input id="grupo" type="text" class="form-control form-control-user" placeholder="Grupo" placeholder="Grupo" maxlength="10" minlength="7" required>
+                                    </div>
+                                   
+                                </div>
+                                <a href="listaGrupo.html" class="btn btn-info btn-icon-split">
+                                    <span class="icon text-white-50">
+                                      <i class="fas fa-arrow-left"></i>
+                                    </span>
+                                    <span class="text">Cancelar</span>
+                                  </a>
+                                <button type="submit" class="btn btn-success btn-icon-split">
+                                    <span class="icon text-white-50">
+                                      <i class="fas fa-save"></i>
+                                    </span>
+                                    <span class="text">Guardar</span>
+                                </button>
+                            </form>
+                            <!--FIN DEL FORMULARIO-->
+
                         </div>
                     </div>
 
-                    <footer is="mi-footer"></footer>
-                    <script src="/__/firebase/7.2.0/firebase-app.js"></script>
-                    <script src="/__/firebase/7.2.0/firebase-firestore.js"></script>
-                    <script src="/__/firebase/init.js"></script>
-                    <script type="module" src="../../js/Profesor/control/ctrllistaGrupos.js">
-
-                    </script>
+                    
 
 
 
