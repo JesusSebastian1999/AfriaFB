@@ -13,6 +13,7 @@ import { error, texto } from "../../lib/util.js";
                   document.vista.apellido_materno.value = modelo.APELLIDO_MATERNO;
                   document.vista.email.value = modelo.EMAIL;
                   document.vista.matricula.value = modelo.MATRICULA;
+                  document.vista.rol.valor = texto(modelo.ROL);
                   document.vista.título.value = modelo.NOMBRES;  
                   vista.addEventListener("submit", guarda);
                   eliminar.addEventListener("click", elimina);
