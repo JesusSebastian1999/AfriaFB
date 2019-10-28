@@ -5,7 +5,7 @@
         <meta name="theme-color" content="#000000">
         <link rel="manifest" href="../../manifest.json">
         <script type="module" src="../../lib/registraServiceWorker.js"></script>
-
+      
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Lista de los profesores</title>
+    <title>Lista de los grupos</title>
 
     <!-- Custom fonts for this template-->
     <link href="../../vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
@@ -25,12 +25,16 @@
     <link href="../../css/sb-admin-2.css" rel="stylesheet">
 
     <script src="../../lib/polycustom.js"></script>
-    <script type="module" src="../../js/Administrador/ctrlMenuAdmin.js"></script>
+    <script type="module" src="../../js/Profesor/control/ctrlMenuProfe.js"></script>
+    <script type="module" src="../../js/Profesor/control/ctrlQuizNuevo.js"></script>
+    <script type="module" src="../../js/Profesor/control/ctrlcampos-alumnos.js"></script>
+    <script type="module" src="../../js/Profesor/control/ctrlforanea-basica.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="module" src="../../js/ctrlSesion.js"></script>
     <script src="/__/firebase/7.2.0/firebase-app.js"></script>
     <script src="/__/firebase/7.2.0/firebase-firestore.js"></script>
+    <script src="/__/firebase/6.0.2/firebase-storage.js"></script>
     <script src="/__/firebase/init.js"></script>
-   <script src="/__/firebase/6.0.2/firebase-auth.js"></script>
-    <script src="../../js/Administrador/ctrlProfesorNuevo.js" type="module"></script>
 </head>
 
 <body id="page-top">
@@ -104,7 +108,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Utonio</span>
-                                <img class="img-profile rounded-circle" src="">
+                                <img class="img-profile rounded-circle" id="icono" alt="Imagen">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -136,20 +140,19 @@
                     <!--Codigo de firebase-->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Listas de Profesores</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Listas de Alumnos</h6>
                         </div>
                         <div class="card-body">
-                            <!--TABLA DONDE SE MUESTRA LOS GRUPOS EXISTENTES-->
-                            <div id="tablaP" class="rot table-responsive">
-
-                                <table  class="table">
+                            <div class="rot table-responsive" id="tablaA">
+                                <!--TABLA DONDE SE LISTAN LOS ALUMNOS EXISTENTES-->
+                                <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Profesores</th>
+                                            <th>Alumnos</th>
                                         </tr>
                                     </thead>
                                     <tbody id="tb">
-                                        <td><progress max="100">Cargando…</progress></td>
+                                            <td><progress max="100">Cargando…</progress></td>
                                     </tbody>
                                 </table>
                                 <button onclick="Mostrar();" class="btn btn-success btn-icon-split">
@@ -158,63 +161,56 @@
                                     </span>
                                     <span class="text">Agregar</span>
                                 </button>
+                                <!--FIN DE LA TABLA DE LISTA ALUMNOS-->
                             </div>
-                            <!--TERMINO DE LA TABLA DE LISTAR GRUPOS-->
                             <script>
                                 function Mostrar(){
                                     document.getElementById("vista").style.display="block";
-                                    document.getElementById("tablaP").style.display="none";
+                                    document.getElementById("tablaA").style.display="none";
                                 }
                             </script>
-                            <!--FORMULARIO PARA INGRESAR UN NUEVO GRUPO-->
-                            <form id="vista" name="vista" class="user" style="display: none">
-                                <div class="form-group row mb-4">
+                                <!--TABLA DONDE SE REGISTRA LOS ALUMNOS NUEVOS-->
+                                <form name="vista" id="vista" class="user" style="display: none">
+                                    <div class="form-group row mb-4">
                                         <div class="col-sm-6 mb-2">
-                                                <input name="nombres" type="text" class="form-control form-control-user" placeholder="Nombre(s)" required>
-                                            </div>
-                                            <div class="col-sm-6 mb-2">
-                                                <input name="apellido_paterno" type="text" class="form-control form-control-user" placeholder="Apellido Paterno" required>
-                                            </div>
-                                            <div class="col-sm-6 mb-2">
-                                                    <input name="apellido_materno" type="text" class="form-control form-control-user" placeholder="Apellido Materno" required>
-                                            </div>
-                                            <div class="col-sm-6 mb-2">
-                                                <input name="email" type="email" class="form-control form-control-user" placeholder="Correo" required>
-                                            </div>
-                                            <div class="col-sm-6 mb-2">
-                                                    <input name="matricula" type="number" class="form-control form-control-user" placeholder="Matricula" required>
-                                            </div>
-                                            <div class="col-sm-6 mb-2">
-                                                <select name="rol" aria-controls="dataTable" class="form-control form-control-sm" required>
-                                                    <option>Sin rol</option>
-                                                    <option value="Profesor">Profesor</option>
-                                                    <option value="Administrador">Administrador</option>
-                                                </select>
-                                            </div>
-                                </div>
-                                <a href="listaGrupo.html" class="btn btn-info btn-icon-split">
-                                    <span class="icon text-white-50">
-                                      <i class="fas fa-arrow-left"></i>
-                                    </span>
-                                    <span class="text">Cancelar</span>
-                                  </a>
+                                            <input name="pregunta" type="text" class="form-control form-control-user" placeholder="Pregunta" maxlength="50" minlength="1" required>
+                                        </div>
+                                        <div class="col-sm-6 mb-2">
+                                            <input name="respuesta_correcta" type="text" class="form-control form-control-user" placeholder="Respuesta Correcta" maxlength="50" minlength="1" required>
+                                        </div>
+                                        <div class="col-sm-6 mb-2">
+                                                <input name="respuesta_a" type="text" class="form-control form-control-user" placeholder="Respuesta A" maxlength="50" minlength="1" required>
+                                        </div>
+                                        <div class="col-sm-6 mb-2">
+                                            <input name="respuesta_b" type="text" class="form-control form-control-user" placeholder="Respuesta B" maxlength="50" minlength="1" required>
+                                        </div>
+                                        <div class="col-sm-6 mb-2">
+                                            <input name="respuesta_c" type="text" class="form-control form-control-user" placeholder="Respuesta C" maxlength="50" minlength="1" required>
+                                        </div>
+                                    </div>
+                                    <a href="listaAlumno.html" class="btn btn-info btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </span>
+                                        <span class="text">Cancelar</span>
+                                </a>
                                 <button type="submit" class="btn btn-success btn-icon-split">
                                     <span class="icon text-white-50">
                                       <i class="fas fa-save"></i>
                                     </span>
                                     <span class="text">Guardar</span>
                                 </button>
-                            </form>
-                            <!--FIN DEL FORMULARIO-->
-
+                                </form>
+                                <!--FIN DE LA TABLA REGISTRAR ALUMNO-->
                         </div>
                     </div>
-
                     
-
-
-
-
+                    <footer is="mi-footer"></footer>
+                    <script src="/__/firebase/7.2.0/firebase-app.js"></script>
+                    <script src="/__/firebase/7.2.0/firebase-firestore.js"></script>
+                    <script src="/__/firebase/init.js"></script>
+                    <script src="/__/firebase/6.0.2/firebase-auth.js"></script>
+                 
 
                     <!--Fin de codigo de firebase-->
                     <!-- grupos -->
@@ -278,12 +274,6 @@
     <script src="../../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="../../vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="../../js/demo/chart-area-demo.js"></script>
-    <script src="../../js/demo/chart-pie-demo.js"></script>
-    <!--script src="control/ctrllistaAlumno.js"></script-->
 </body>
 
 </html>

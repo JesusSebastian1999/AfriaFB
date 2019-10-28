@@ -57,18 +57,18 @@ export function interseccion(a, b) {
  export function hayUsuario(user) {
   return user && user.email;
  }
- export function protege(ALUMNOS) {
+ export function protege(PROFESORES) {
   return new Promise((resolve, reject) => {
-    if (!ALUMNOS || ALUMNOS.length === 0) {
+    if (!PROFESORES || PROFESORES.length === 0) {
       resolve();
     } else {
       firebase.auth().onAuthStateChanged(
         async user => {
           try {
             if (hayUsuario(user)) {
-              const doc = await firebase.firestore().collection("USUARIO")
+              const doc = await firebase.firestore().collection("PROFESORES")
                 .doc(user.email.toUpperCase()).get();
-              if (doc.exists && interseccion(ALUMNOS, doc.data().ROL).length > 0) {
+              if (doc.exists && interseccion(PROFESORES, doc.data().ROL).length > 0) {
                 resolve();
               } else {
                 throw new Error("No autorizado.");               

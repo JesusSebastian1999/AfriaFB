@@ -2,6 +2,27 @@
 <html lang="en">
 
 <head>
+<!-- Color de la barra de navegación de Chrome. -->
+<meta name="theme-color" content="#000000">
+ 
+<!-- Configuración de la Web App Chrome y Microsoft Store. -->
+<link rel="manifest" href="manifest.json">
+
+<!-- Configuración para del acceso directo en Windows Edge/IE -->
+<!-- Icono -->
+<meta name="msapplication-TileImage" content="icono.png">
+<!-- Color de tile. -->
+<meta name="msapplication-TileColor" content="#8a0000">
+
+<!-- Configuración para Web Clip en Safari. -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" sizes="2048x2048" href="icono.png">
+<link rel="apple-touch-startup-image" sizes="2048x2048" href="icono.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<script type="module" src="lib/registraServiceWorker.js"></script>
+<script src="lib/polycustom.js"></script>
+
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +38,13 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.css" rel="stylesheet">
+    <script type="module" src="js/form-navegacion.js"></script>
+
+    <script src="/__/firebase/6.0.2/firebase-app.js"></script>
+   <script src="/__/firebase/6.0.2/firebase-auth.js"></script>
+   <script src="/__/firebase/6.0.2/firebase-firestore.js"></script>
+   <script src="/__/firebase/init.js"></script>
+
 
 </head>
 
@@ -73,17 +101,20 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-
+            <form-navegacion></form-navegacion>
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
+            
+
 
         </ul>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
+
 
             <!-- Main Content -->
             <div id="content">
@@ -232,13 +263,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="../../vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="../../js/demo/chart-area-demo.js"></script>
-    <script src="../../js/demo/chart-pie-demo.js"></script>
 
 </body>
 

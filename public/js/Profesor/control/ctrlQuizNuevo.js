@@ -1,4 +1,4 @@
-
+//import swal from 'sweetalert';
 //Importamos util.js paro los erres y evitar que iserten codigo
 import { muestraError, error,url, cod  } from "../../../lib/util.js";
 //Importamos ctrlForaneas.js, donde se va hacer la consulta de la tabla Grupos
@@ -24,13 +24,13 @@ async function guarda(evt) {
    //ALUMNOS las cuales son NOMBRES, APELLIDO_PATERNO, etc.
    //los datos lo recuperamos por medio de la linea de codigo "document.vista.nombre" y
    //los datos se los asignamos a los atributos de la tabla antes mencionadad
-   const NOMBRES = document.vista.nombres.value.trim();
-   const APELLIDO_PATERNO = document.vista.apellido_paterno.value.trim();
-   const APELLIDO_MATERNO = document.vista.apellido_materno.value.trim();
-   const EMAIL = document.vista.email.value.trim();
-   const ROL = document.vista.rol.value;
-   const ID_ALUMNO = EMAIL.toUpperCase();
-   const usuRef = firestore.collection("ALUMNOS").doc(ID_ALUMNO);
+   const PREGUNTA = document.vista.pregunta.value.trim();
+   const RESPUESTA_CORRECTA = document.vista.respuesta_correcta.value.trim();
+   const RESPUESTA_A = document.vista.respuesta_a.value.trim();
+   const RESPUESTA_B = document.vista.respuesta_b.value.trim();
+   const RESPUESTA_C = document.vista.respuesta_c.value.trim();
+   const ID_QUIZ = PREGUNTA.toUpperCase();
+   const usuRef = firestore.collection("QUIZS").doc(ID_QUIZ);
    await firestore.runTransaction(async tx => {
      const doc = await tx.get(usuRef);
      if (doc.exists) {
@@ -40,17 +40,17 @@ async function guarda(evt) {
        await tx.set(usuRef, {
          //Si no existe, se agregaran las const que creamos anterior mente
          //Y agregamos el grupo que se haya seleccionado 
-         GRUPO_NOMBRE: document.vista.grupo.value,
-         NOMBRES,
-         APELLIDO_PATERNO,
-         APELLIDO_MATERNO,
-         EMAIL,
-         ROL
+         TEMA_NOMBRE: document.vista.tema.value,
+         PREGUNTA,
+         RESPUESTA_CORRECTA,
+         RESPUESTA_A,
+         RESPUESTA_B,
+         RESPUESTA_C
        });
      }
    });
    //Con esta linea de codigo te regresa al listarAlumno.html
-   document.location = "listaAlumno.html";
+   document.location = "listaQuiz.html";
  } catch (e) {
    //En caso de dar error, esta linea muestrta el error en la consola
    muestraError(e);
@@ -70,7 +70,7 @@ function consulta() {
               tb.innerHTML += /*html*/
                   `<tr>
                       <td><a>
-                      ${cod(modelo.APELLIDO_PATERNO)+" "+cod(modelo.APELLIDO_MATERNO)+" "+cod(modelo.NOMBRES)}
+                      ${cod(modelo.PREGUNTA))}
                       </a></td>
                       <td>
                         <a href="alumno.html?id=${url(doc.id)}" class="btn btn-warning btn-circle">

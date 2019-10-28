@@ -1,3 +1,5 @@
+//import Swal from "sweetalert";
+//Importamos util.js paro los erres y evitar que iserten codigo
 import { error, url, cod } from "../../../lib/util.js";
             const firestore = firebase.firestore();
             firestore.enablePersistence()
@@ -19,21 +21,26 @@ import { error, url, cod } from "../../../lib/util.js";
                     });
                   }
                 });
+                //Con esta linea de codigo te regresa al listarGrupo.html
                 document.location = "listaGrupo.html";
 
 
               } catch (e) {
+                //En caso de dar error, esta linea muestrta el error en la consola
                 error(e)
               }
             }
             
                         
             function consulta() {
+                // En esta linea hacemos la consulta de la tabla de GRUPOS
                 firebase.firestore().collection("GRUPOS").onSnapshot(
                     querySnapshot => {
                         tb.innerHTML = "";
                         querySnapshot.forEach(doc => {
                             const modelo = doc.data();
+                            //En estas lineas le decimos que nos recupere de la tabla el nombre del grupo y la muestra en la tabla
+                            //tambien le decimos que nos recupere de la tabla el id que se va a poner dentro del href para pode visualizar los datos del grupo
                             tb.innerHTML += /*html*/
                                 `<tr>
                                     <td><a>

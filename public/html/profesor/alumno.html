@@ -2,6 +2,10 @@
 <html lang="en">
 
 <head>
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="../../manifest.json">
+    <script type="module" src="../../lib/registraServiceWorker.js"></script>
+
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,9 +30,11 @@
     <script src="/__/firebase/7.2.0/firebase-firestore.js"></script>
     <script src="/__/firebase/6.0.2/firebase-storage.js"></script>
     <script src="/__/firebase/init.js"></script>
+   <script src="/__/firebase/6.0.2/firebase-auth.js"></script>
     <script type="module" src="../../js/Profesor/control/ctrlMenuProfe.js"></script>
     <script type="module" src="../../js/Profesor/control/ctrlcampos-alumnos.js"></script>
     <script type="module" src="../../js/Profesor/control/ctrlforanea-basica.js"></script>
+    <script type="module" src="../../js/ctrlSesion.js"></script>
 </head>
 
 <body id="page-top">
@@ -100,7 +106,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Utonio</span>
-                                <img class="img-profile rounded-circle" src="">
+                                <img class="img-profile rounded-circle" id="icono" alt="Imagen">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
