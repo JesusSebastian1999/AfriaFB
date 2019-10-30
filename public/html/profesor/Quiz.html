@@ -2,10 +2,10 @@
 <html lang="es">
 
 <head>
-        <meta name="theme-color" content="#000000">
-        <link rel="manifest" href="../../manifest.json">
-        <script type="module" src="../../lib/registraServiceWorker.js"></script>
-      
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="../../manifest.json">
+    <script type="module" src="../../lib/registraServiceWorker.js"></script>
+
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Lista de Preguntas</title>
+    <title>Pregunta</title>
 
     <!-- Custom fonts for this template-->
     <link href="../../vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
@@ -25,17 +25,16 @@
     <link href="../../css/sb-admin-2.css" rel="stylesheet">
 
     <script src="../../lib/polycustom.js"></script>
-    <script type="module" src="../../js/Profesor/control/ctrlMenuProfe.js"></script>
-    <script type="module" src="../../js/Profesor/control/ctrlQuizNuevo.js"></script>
-    <script type="module" src="../../js/Profesor/control/ctrlcampos-alumnos.js"></script>
-    <script type="module" src="../../js/Profesor/control/ctrlforanea-basica.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script type="module" src="../../js/ctrlSesion.js"></script>
+
     <script src="/__/firebase/7.2.0/firebase-app.js"></script>
     <script src="/__/firebase/7.2.0/firebase-firestore.js"></script>
     <script src="/__/firebase/6.0.2/firebase-storage.js"></script>
     <script src="/__/firebase/init.js"></script>
+   <script src="/__/firebase/6.0.2/firebase-auth.js"></script>
+    <script type="module" src="../../js/Profesor/control/ctrlMenuProfe.js"></script>
     <script type="module" src="../../js/Profesor/control/ctrlcampos-alumnos.js"></script>
+    <script type="module" src="../../js/Profesor/control/ctrlforanea-basica.js"></script>
+    <script type="module" src="../../js/ctrlSesion.js"></script>
 </head>
 
 <body id="page-top">
@@ -46,7 +45,7 @@
         <form id="sesion" name="sesion">
             <herramientas-detalle agrega></herramientas-detalle>
              </form>
-        <!-- End of Sidebar -->
+                     <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -63,8 +62,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small"
                                 placeholder="Buscar en áfria..." aria-label="Search" aria-describedby="basic-addon2">
@@ -139,95 +137,63 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!--Codigo de firebase-->
+                    <!-- Agregar alumnos -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Lista de Preguntas</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Grupo</h6>
                         </div>
                         <div class="card-body">
-                            <div class="rot table-responsive" id="tablaA">
-                                <!--TABLA DONDE SE LISTAN LOS ALUMNOS EXISTENTES-->
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Preguntas</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tb">
-                                            <td><progress max="100">Cargando…</progress></td>
-                                    </tbody>
-                                </table>
-                                <button onclick="Mostrar();" class="btn btn-success btn-icon-split">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-plus"></i>
-                                    </span>
-                                    <span class="text">Agregar</span>
-                                </button>
-                                <!--FIN DE LA TABLA DE LISTA ALUMNOS-->
-                            </div>
-                            <script>
-                                function Mostrar(){
-                                    document.getElementById("vista").style.display="block";
-                                    document.getElementById("tablaA").style.display="none";
-                                }
-                            </script>
-                                <!--TABLA DONDE SE REGISTRA LOS ALUMNOS NUEVOS-->
-                                <form name="vista" id="vista" class="user" style="display: none">
-                                    <div class="form-group row mb-4">
-                                        <div class="col-sm-6 mb-2">
-                                            <input name="pregunta" type="text" class="form-control form-control-user" placeholder="Pregunta" maxlength="50" minlength="1" required>
-                                        </div>
-                                        <div class="col-sm-6 mb-2">
-                                            <input name="respuesta_correcta" type="text" class="form-control form-control-user" placeholder="Respuesta Correcta" maxlength="50" minlength="1" required>
-                                        </div>
-                                        <div class="col-sm-6 mb-2">
-                                                <input name="respuesta_a" type="text" class="form-control form-control-user" placeholder="Respuesta A" maxlength="50" minlength="1" required>
-                                        </div>
-                                        <div class="col-sm-6 mb-2">
-                                            <input name="respuesta_b" type="text" class="form-control form-control-user" placeholder="Respuesta B" maxlength="50" minlength="1" required>
-                                        </div>
-                                        <div class="col-sm-6 mb-2">
-                                            <input name="respuesta_c" type="text" class="form-control form-control-user" placeholder="Respuesta C" maxlength="50" minlength="1" required>
-                                        </div>
-                                        <div class="col-sm-6 mb-2">
-                                            <campos-temas></campos-temas>
-                                       </div>
+
+                            <form name="vista" id="vista" class="user">
+                                <h1><output name="título"><progress max="100">Cargando…</progress></h1>
+                                <div class="form-group row mb-4">
+                                    <div class="col-sm-6 mb-2">
+                                        <input name="pregunta" type="text" class="form-control form-control-user" placeholder="Pregunta" maxlength="50" minlength="1" required>
                                     </div>
-                                    <a href="listaQuiz.html" class="btn btn-info btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-arrow-left"></i>
-                                        </span>
-                                        <span class="text">Cancelar</span>
-                                </a>
-                                <button type="submit" class="btn btn-success btn-icon-split">
+                                    <div class="col-sm-6 mb-2">
+                                        <input name="respuesta_correcta" type="text" class="form-control form-control-user" placeholder="Respuesta Correcta" maxlength="50" minlength="1" required>
+                                    </div>
+                                    <div class="col-sm-6 mb-2">
+                                            <input name="respuesta_a" type="text" class="form-control form-control-user" placeholder="Respuesta A" maxlength="50" minlength="1" required>
+                                    </div>
+                                    <div class="col-sm-6 mb-2">
+                                        <input name="respuesta_b" type="text" class="form-control form-control-user" placeholder="Respuesta B" maxlength="50" minlength="1" required>
+                                    </div>
+                                    <div class="col-sm-6 mb-2">
+                                        <input name="respuesta_c" type="text" class="form-control form-control-user" placeholder="Respuesta C" maxlength="50" minlength="1" required>
+                                    </div>
+                                    <div class="col-sm-6 mb-2">
+                                        <campos-temas></campos-temas>
+                                   </div>
+                                </div>
+                                <a href="listaQuiz.html" class="btn btn-info btn-icon-split">
                                     <span class="icon text-white-50">
-                                      <i class="fas fa-save"></i>
+                                        <i class="fas fa-arrow-left"></i>
                                     </span>
-                                    <span class="text">Guardar</span>
+                                    <span class="text">Cancelar</span>
+                                </a>
+                                <button type="submit" class="btn btn-warning btn-icon-split">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-pen"></i>
+                                    </span>
+                                    <span class="text">Modificar</span>
                                 </button>
-                                </form>
-                                <!--FIN DE LA TABLA REGISTRAR ALUMNO-->
+                                <button type="button" id="eliminar" class="btn btn-danger btn-icon-split">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </span>
+                                    <span class="text">Eliminar</span>
+                                </button>
+
+                            </form>
                         </div>
+
                     </div>
-                    
-                    <footer is="mi-footer"></footer>
-                    <script src="/__/firebase/7.2.0/firebase-app.js"></script>
-                    <script src="/__/firebase/7.2.0/firebase-firestore.js"></script>
-                    <script src="/__/firebase/init.js"></script>
-                    <script src="/__/firebase/6.0.2/firebase-auth.js"></script>
-                 
-
-                    <!--Fin de codigo de firebase-->
-                    <!-- grupos -->
-
-                    <!--Fin grupos -->
-
                 </div>
-                <!-- /.container-fluid -->
+                <!-- fin Agregar alumnos -->
 
             </div>
-            <!-- End of Main Content -->
-
+            <!-- /.container-fluid -->
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
@@ -236,9 +202,14 @@
                     </div>
                 </div>
             </footer>
-
         </div>
-        <!-- End of Content Wrapper -->
+
+        <!-- End of Main Content -->
+
+
+
+    </div>
+    <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
@@ -278,7 +249,9 @@
     <!-- Custom scripts for all pages-->
     <script src="../../js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
+
+    <script src="../../js/Profesor/control/ctrlQuiz.js" type="module"></script>
+
 </body>
 
 </html>
