@@ -1,4 +1,8 @@
-
+//
+//  Autor: Building Code
+//
+//  Fecha: 29/10/2019
+//
 //Importamos util.js paro los erres y evitar que iserten codigo
 import { muestraError, error,url, cod  } from "../../../lib/util.js";
 //Importamos ctrlForaneas.js, donde se va hacer la consulta de la tabla Grupos

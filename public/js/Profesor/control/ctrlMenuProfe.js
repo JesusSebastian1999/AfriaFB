@@ -1,4 +1,10 @@
+//
+//  Autor: Building Code
+//
+//  Fecha: 29/10/2019
+//
 import { copiaAttr} from "../../../lib/util.js";
+//Se crea un web component para el menu de profesores
 customElements.define("herramientas-detalle", class extends HTMLElement {
  connectedCallback() {
    this.innerHTML = /*html*/
@@ -45,11 +51,15 @@ customElements.define("herramientas-detalle", class extends HTMLElement {
 
      <!-- Examen -->
      <li class="nav-item">
-         <a class="nav-link" href="crearExamen.html">
+         <a class="nav-link" href="listaQuiz.html">
              <i class="fas fa-book-open"></i>
              <span>Crear Examen</span></a>
      </li>
-
+     <li class="nav-item">
+     <a class="nav-link" href="listaTemas.html">
+         <i class="fas fa-book-open"></i>
+         <span>Lista de Temas</span></a>
+     </li>
      <!-- Divider -->
      <hr class="sidebar-divider d-none d-md-block">
 

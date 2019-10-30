@@ -1,11 +1,18 @@
+//
+//  Autor: Building Code
+//
+//  Fecha: 29/10/2019
+//
 import { error, texto } from "../../../lib/util.js";
 import { carga_grupos} from "./ctrlforaneas.js";
             const parametros = new URLSearchParams(location.search);
             const ID_ALUMNO = parametros.get("id");
+            //Hacemos la coneccion a la base de datos de firebase 
             const firestore = firebase.firestore();
             busca();
             async function busca() {
               try {
+                //Pormedio del firestore.collection recuperamos los datos de la tabla ALUMNOS
                 const doc = await firestore.collection("ALUMNOS").doc(ID_ALUMNO).get();
                 if (doc.exists) {
                   await carga_grupos();
@@ -16,7 +23,7 @@ import { carga_grupos} from "./ctrlforaneas.js";
                   document.vista.apellido_materno.value = modelo.APELLIDO_MATERNO;
                   document.vista.email.value = modelo.EMAIL;
                   document.vista.título.value = modelo.NOMBRES;  
-                  vista.addEventListener("submit", guarda);
+                  vista.addEventListener("submit", modifica);
                   eliminar.addEventListener("click", elimina);
                 } else {
                   alert("Pasatiempo no encontrado");
@@ -25,7 +32,7 @@ import { carga_grupos} from "./ctrlforaneas.js";
                 error(e)
               }
             }
-            async function guarda(evt) {
+            async function modifica(evt) {
               try {
                 evt.preventDefault();
                 const NOMBRES = vista.nombres.value.trim();
@@ -34,6 +41,7 @@ import { carga_grupos} from "./ctrlforaneas.js";
                 const EMAIL = vista.email.value.trim();
                 const GRUPO_NOMBRE = vista.grupo.value;
                 const modelo = { NOMBRES,APELLIDO_PATERNO,APELLIDO_MATERNO,EMAIL,GRUPO_NOMBRE};
+                //Por medio del .set(modelo) modificamos los datos de la tabla ALUMNOS               
                 await firestore.collection("ALUMNOS").doc(ID_ALUMNO).set(modelo);
                 document.location = "listaAlumno.html";
               } catch (e) {
@@ -42,6 +50,7 @@ import { carga_grupos} from "./ctrlforaneas.js";
             }
             async function elimina() {
               try {
+                //Por medio del .delete eliminamos los datos de la tabla ALUMNOS
                 await firestore.collection("ALUMNOS").doc(ID_ALUMNO).delete();
                 document.location = "listaAlumno.html";
               } catch (e) {

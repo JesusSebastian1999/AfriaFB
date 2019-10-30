@@ -13,17 +13,17 @@ import { error } from "../../../lib/util.js";
               .then(busca);
             async function busca() {
               try {
-                //Pormedio del firestore.collection recuperamos los datos de la tabla GRUPOS
-                const doc = await firestore.collection("GRUPOS").doc(id).get();
+                //Pormedio del firestore.collection recuperamos los datos de la tabla TEMAS
+                const doc = await firestore.collection("TEMAS").doc(id).get();
                 if (doc.exists) {
                   const modelo = doc.data();
-                  document.title = modelo.GRUPO_NOMBRE;
-                  título.value = modelo.GRUPO_NOMBRE;
-                  grupo.value = modelo.GRUPO_NOMBRE;
+                  document.title = modelo.TEMA_NOMBRE;
+                  título.value = modelo.TEMA_NOMBRE;
+                  tema.value = modelo.TEMA_NOMBRE;
                   vista.addEventListener("submit", modifica);
                   eliminar.addEventListener("click", elimina);
                 } else {
-                  alert("Pasatiempo no encontrado");
+                  alert("Tema no encontrado");
                 }
               } catch (e) {
                 error(e)
@@ -32,21 +32,20 @@ import { error } from "../../../lib/util.js";
             async function modifica(evt) {
               try {
                 evt.preventDefault();
-                const GRUPO_NOMBRE = grupo.value.trim();
-                const id = GRUPO_NOMBRE;
-                const modelo = { GRUPO_NOMBRE};
-                //Por medio del .set(modelo) modificamos los datos de la tabla GRUPOS
-                await firestore.collection("GRUPOS").doc(id).set(modelo);
-                document.location = "listaGrupo.html";
+                const TEMA_NOMBRE = tema.value.trim();
+                const modelo = { TEMA_NOMBRE};
+                //Por medio del .set(modelo) modificamos los datos de la tabla TEMAS
+                await firestore.collection("TEMAS").doc(id).set(modelo);
+                document.location = "listaTemas.html";
               } catch (e) {
                 error(e)
               }
             }
             async function elimina() {
               try {
-                //Por medio del .delete eliminamos los datos de la tabla GRUPOS
-                await firestore.collection("GRUPOS").doc(id).delete();
-                document.location = "listaGrupo.html";
+                //Por medio del .delete eliminamos los datos de la tabla TEMAS
+                await firestore.collection("TEMAS").doc(id).delete();
+                document.location = "listaTemas.html";
               } catch (e) {
                 error(e)
               }

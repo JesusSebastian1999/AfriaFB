@@ -1,3 +1,8 @@
+//
+//  Autor: Building Code
+//
+//  Fecha: 29/10/2019
+//
 import { eh } from "../../../lib/util.js";
 customElements.define("foranea-basica", class extends HTMLSelectElement {
  constructor() {
@@ -10,6 +15,8 @@ customElements.define("foranea-basica", class extends HTMLSelectElement {
    this.innerHTML = "";
  }
  agrega(fila) {
+   //Aqui es donde se crean los options de los selects de las foraneas de las
+   //tablas TEMAS y GRUPOS
    this.classList.remove("vacia");
    this.innerHTML += /*html*/
      `<option value="${eh(fila.id)}">${eh(fila.texto)}</option>`;

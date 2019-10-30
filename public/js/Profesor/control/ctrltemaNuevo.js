@@ -3,6 +3,7 @@
 //
 //  Fecha: 29/10/2019
 //
+//import Swal from "sweetalert";
 //Importamos util.js paro los erres y evitar que iserten codigo
 import { error, url, cod } from "../../../lib/util.js";
             const firestore = firebase.firestore();
@@ -11,23 +12,21 @@ import { error, url, cod } from "../../../lib/util.js";
               .then(() => vista.addEventListener("submit", guarda));
             async function guarda(evt) {
               try {
-                //Pasamos los datos del formulario a los atributos de la tabla GRUPOS
                 evt.preventDefault();
-                const GRUPO_NOMBRE = grupo.value.trim();
-                const ID_GRUPO = GRUPO_NOMBRE.toUpperCase();
-                const usuRef = firestore.collection("GRUPOS").doc(ID_GRUPO);
+                const TEMA_NOMBRE = tema.value.trim();
+                const usuRef = firestore.collection("TEMAS").doc();
                 await firestore.runTransaction(async tx => {
                   const doc = await tx.get(usuRef);
                   if (doc.exists) {
-                    throw new Error("El grupo ya está registrado.");
+                    throw new Error("El tema ya está registrado.");
                   } else {
                     await tx.set(usuRef, {
-                      GRUPO_NOMBRE
+                      TEMA_NOMBRE
                     });
                   }
                 });
                 //Con esta linea de codigo te regresa al listarGrupo.html
-                document.location = "listaGrupo.html";
+                document.location = "listaTemas.html";
 
 
               } catch (e) {
@@ -39,7 +38,7 @@ import { error, url, cod } from "../../../lib/util.js";
                         
             function consulta() {
                 // En esta linea hacemos la consulta de la tabla de GRUPOS
-                firebase.firestore().collection("GRUPOS").onSnapshot(
+                firebase.firestore().collection("TEMAS").onSnapshot(
                     querySnapshot => {
                         tb.innerHTML = "";
                         querySnapshot.forEach(doc => {
@@ -49,10 +48,10 @@ import { error, url, cod } from "../../../lib/util.js";
                             tb.innerHTML += /*html*/
                                 `<tr>
                                     <td><a>
-                                    ${cod(modelo.GRUPO_NOMBRE)}
+                                    ${cod(modelo.TEMA_NOMBRE)}
                                     </a></td>
                                     <td>
-                                      <a href="grupo.html?id=${url(doc.id)}" class="btn btn-warning btn-circle">
+                                      <a href="tema.html?id=${url(doc.id)}" class="btn btn-warning btn-circle">
                                       <i class="fas fa-pen"></i>
                                       </a>
                                     </td>
