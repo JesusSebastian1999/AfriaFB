@@ -1,10 +1,17 @@
+//
+//  Autor: Building Code
+//
+//  Fecha: 29/10/2019
+//
 import { error, texto } from "../../lib/util.js";
             const parametros = new URLSearchParams(location.search);
             const ID_PROFE = parametros.get("id");
+            //Hacemos la coneccion a la base de datos de firebase 
             const firestore = firebase.firestore();
             busca();
             async function busca() {
               try {
+                //Pormedio del firestore.collection recuperamos los datos de la tabla PROFESORES
                 const doc = await firestore.collection("PROFESORES").doc(ID_PROFE).get();
                 if (doc.exists) {
                   const modelo = doc.data();
@@ -34,6 +41,7 @@ import { error, texto } from "../../lib/util.js";
                 const MATRICULA = document.vista.matricula.value.trim();
                 const ROL = document.vista.rol.value;
                 const modelo = { NOMBRES,APELLIDO_PATERNO,APELLIDO_MATERNO,EMAIL,MATRICULA,ROL};
+                //Por medio del .set(modelo) modificamos los datos de la tabla PROFESORES
                 await firestore.collection("PROFESORES").doc(ID_PROFE).set(modelo);
                 document.location = "listaProfesores.html";
               } catch (e) {
@@ -42,6 +50,7 @@ import { error, texto } from "../../lib/util.js";
             }
             async function elimina() {
               try {
+                //Por medio del .delete eliminamos los datos de la tabla PROFESORES
                 await firestore.collection("PROFESORES").doc(ID_PROFE).delete();
                 document.location = "listaProfesores.html";
               } catch (e) {

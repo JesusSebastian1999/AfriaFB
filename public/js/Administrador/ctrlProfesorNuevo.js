@@ -1,3 +1,8 @@
+//
+//  Autor: Building Code
+//
+//  Fecha: 29/10/2019
+//
 import { error, url, cod } from "../../lib/util.js";
             const firestore = firebase.firestore();
             firestore.enablePersistence()
@@ -6,6 +11,10 @@ import { error, url, cod } from "../../lib/util.js";
             async function guarda(evt) {
               try {
                 evt.preventDefault();
+                //Creamos las const junto con los nombres de los atributos que tiene la tabla
+                //PROFESORES las cuales son NOMBRES, APELLIDO_PATERNO, etc.
+                //los datos lo recuperamos por medio de la linea de codigo "document.vista.nombres" y
+                //los datos se los asignamos a los atributos de la tabla antes mencionadad
                 const NOMBRES = document.vista.nombres.value.trim();
                 const APELLIDO_PATERNO = document.vista.apellido_paterno.value.trim();
                 const APELLIDO_MATERNO = document.vista.apellido_materno.value.trim();
@@ -39,6 +48,7 @@ import { error, url, cod } from "../../lib/util.js";
             
                         
             function consulta() {
+                //En esta linea hacemos la consulta de la tabla PROFESORES
                 firebase.firestore().collection("PROFESORES").onSnapshot(
                     querySnapshot => {
                         tb.innerHTML = "";

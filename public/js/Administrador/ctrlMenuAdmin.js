@@ -1,4 +1,10 @@
+//
+//  Autor: Building Code
+//
+//  Fecha: 29/10/2019
+//
 import { copiaAttr} from "../../lib/util.js";
+//Creamos un web component para crear el menu del administrador 
 customElements.define("herramientas-detalle", class extends HTMLElement {
  connectedCallback() {
    this.innerHTML = /*html*/
