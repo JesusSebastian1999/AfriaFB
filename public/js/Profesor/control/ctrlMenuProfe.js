@@ -53,7 +53,7 @@ customElements.define("herramientas-detalle", class extends HTMLElement {
      <li class="nav-item">
          <a class="nav-link" href="listaQuiz.html">
              <i class="fas fa-book-open"></i>
-             <span>Crear Examen</span></a>
+             <span>Crear Quiz</span></a>
      </li>
      <li class="nav-item">
      <a class="nav-link" href="listaTemas.html">
