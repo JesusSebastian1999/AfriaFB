@@ -1,4 +1,9 @@
-import { hayUsuario, error } from "../lib/util.js";
+//
+//  Autor: Building Code
+//
+//  Fecha: 29/10/2019
+//
+import { hayUsuario, error } from "./Profesor/lib/util.js";
             const icono = document.getElementById("icono");
             firebase.auth().onAuthStateChanged(
               user => {
@@ -6,7 +11,7 @@ import { hayUsuario, error } from "../lib/util.js";
                   //document.vista.cue.value = user.email;
                   //document.vista.nombre.value = user.displayName;
                   icono.src = user.photoURL;
-                  document.vista.terminaSesion.addEventListener("click", terminaSesion);
+                  document.sesion.terminaSesion.addEventListener("click", terminaSesion);
                 } else {
                   document.location = "../../index.html";
                 }
