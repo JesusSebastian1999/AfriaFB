@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
         <meta name="theme-color" content="#000000">
@@ -24,13 +24,14 @@
     <!-- Custom styles for this template-->
     <link href="../../css/sb-admin-2.css" rel="stylesheet">
 
-    <script src="../../lib/polycustom.js"></script>
+    
     <script type="module" src="../../js/Profesor/control/ctrlMenuProfe.js"></script>
-    <script type="module" src="../../js/Profesor/control/ctrlAlumnoNuevo.js"></script>
-    <script type="module" src="../../js/Profesor/control/ctrlcampos-alumnos.js"></script>
-    <script type="module" src="../../js/Profesor/control/ctrlforanea-basica.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="module" src="../../js/ctrlSesion.js"></script>
+    <script type="module" src="../../js/Profesor/cmp/mi-lista.js"></script>
+    <script type="module" src="../../js/Profesor/cmp/herramientas-maestras.js"></script>
+    <script type="module" src="../../js/Profesor/ctrl/CtrlUsuarios.js"></script>
+    <script src="../../js/Profesor/lib/polycustom.js"></script>
 </head>
 
 <body id="page-top">
@@ -138,73 +139,22 @@
                         <div class="card-body">
                             <div class="rot table-responsive" id="tablaA">
                                 <!--TABLA DONDE SE LISTAN LOS ALUMNOS EXISTENTES-->
-                                <table class="table">
+                                <header is="herramientas-maestras"></header>
+                                <table id="lista" class="table" is="mi-lista">
                                     <thead>
                                         <tr>
                                             <th>Alumnos</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="tb">
-                                            <td><progress max="100">Cargando…</progress></td>
-                                    </tbody>
                                 </table>
-                                <button onclick="Mostrar();" class="btn btn-success btn-icon-split">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-plus"></i>
-                                    </span>
-                                    <span class="text">Agregar</span>
-                                </button>
+                                
                                 <!--FIN DE LA TABLA DE LISTA ALUMNOS-->
                             </div>
-                            <script>
-                                function Mostrar(){
-                                    document.getElementById("vista").style.display="block";
-                                    document.getElementById("tablaA").style.display="none";
-                                }
-                            </script>
-                                <!--TABLA DONDE SE REGISTRA LOS ALUMNOS NUEVOS-->
-                                <form name="vista" id="vista" class="user" style="display: none">
-                                    <div class="form-group row mb-4">
-                                        <div class="col-sm-6 mb-2">
-                                            <input name="nombres" type="text" class="form-control form-control-user" placeholder="Nombre(s)" maxlength="50" minlength="1" required>
-                                        </div>
-                                        <div class="col-sm-6 mb-2">
-                                            <input name="apellido_paterno" type="text" class="form-control form-control-user" placeholder="Apellido Paterno" maxlength="50" minlength="1" required>
-                                        </div>
-                                        <div class="col-sm-6 mb-2">
-                                                <input name="apellido_materno" type="text" class="form-control form-control-user" placeholder="Apellido Materno" maxlength="50" minlength="1" required>
-                                        </div>
-                                        <div class="col-sm-6 mb-2">
-                                            <input name="email" type="email" class="form-control form-control-user" placeholder="Correo" maxlength="50" minlength="1" required>
-                                        </div>
-                                        <div class="col-sm-6 mb-2">
-                                             <campos-alumnos></campos-alumnos>
-                                        </div>
-                                        <div class="col-sm-6 mb-2">
-                                            <select name="rol" aria-controls="dataTable" class="form-control form-control-sm" required>
-                                                <option>Sin rol</option>
-                                                <option value="Alumno">Alumno</option>
-                                            </select>
-                                       </div>
-                                    </div>
-                                    <a href="listaAlumno.html" class="btn btn-info btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-arrow-left"></i>
-                                        </span>
-                                        <span class="text">Cancelar</span>
-                                </a>
-                                <button type="submit" class="btn btn-success btn-icon-split">
-                                    <span class="icon text-white-50">
-                                      <i class="fas fa-save"></i>
-                                    </span>
-                                    <span class="text">Guardar</span>
-                                </button>
-                                </form>
+                            
                                 <!--FIN DE LA TABLA REGISTRAR ALUMNO-->
                         </div>
                     </div>
                     
-                    <footer is="mi-footer"></footer>
                     <script src="/__/firebase/7.2.0/firebase-app.js"></script>
                     <script src="/__/firebase/7.2.0/firebase-firestore.js"></script>
                     <script src="/__/firebase/init.js"></script>
