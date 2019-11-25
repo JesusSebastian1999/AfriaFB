@@ -22,13 +22,16 @@
     <!-- Custom styles for this template-->
     <link href="../../css/sb-admin-2.css" rel="stylesheet">
 
-    <script src="../../lib/polycustom.js"></script>
+    <script src="../../js/lib/polycustom.js"></script>
 
     <script src="/__/firebase/7.2.0/firebase-app.js"></script>
     <script src="/__/firebase/7.2.0/firebase-firestore.js"></script>
     <script src="/__/firebase/init.js"></script>
    <script src="/__/firebase/6.0.2/firebase-auth.js"></script>
     <script type="module" src="../../js/Administrador/ctrlMenuAdmin.js"></script>
+    <script type="module" src="../../js/cmp/herramientas-opciones.js"></script>
+    <script type="module" src="../../js/Administrador/ctrl/CtrlProfesor.js"></script>
+    <script type="module" src="../../js/cmp/mi-select.js"></script>
 </head>
 
 <body id="page-top">
@@ -128,55 +131,34 @@
                             <h6 class="m-0 font-weight-bold text-primary">Profesor</h6>
                         </div>
                         <div class="card-body">
-                            <form id="vista" name="vista" class="user">
-                                    <h1><output name="título"><progress max="100">Cargando…</progress></h1>
+                            <form id="forma" class="user">
+                                    <header is="herramientas-opciones"></header>
+                                    <h1><output id="título"><progress max="100">Cargando…</progress></h1>
                                         <div class="form-group row mb-4">
         
                                             <div class="col-sm-6 mb-2">
-                                                <input name="nombres" type="text" class="form-control form-control-user"
-                                                    placeholder="Nombre(s)" required>
+                                                <input id="nombres" type="text" class="form-control form-control-user"
+                                                    placeholder="Nombre(s)" maxlength="41" minlength="3" required>
                                             </div>
                                             <div class="col-sm-6 mb-2">
-                                                <input name="apellido_paterno" type="text" class="form-control form-control-user"
-                                                    placeholder="Apellido Paterno" required>
+                                                <input id="apellido_paterno" type="text" class="form-control form-control-user"
+                                                    placeholder="Apellido Paterno" maxlength="41" minlength="3" required>
                                             </div>
                                             <div class="col-sm-6 mb-2">
-                                                <input name="apellido_materno" type="text" class="form-control form-control-user"
-                                                    placeholder="Apellido Materno" required>
+                                                <input id="apellido_materno" type="text" class="form-control form-control-user"
+                                                    placeholder="Apellido Materno" maxlength="41" minlength="3" required>
                                             </div>
                                             <div class="col-sm-6 mb-2">
-                                                <input name="email" type="email" class="form-control form-control-user"
-                                                    placeholder="Correo" required>
+                                                <input id="email" pattern="[A-Za-z0-9._%+-]+@gmail+\.com" type="email" class="form-control form-control-user"
+                                                    placeholder="Correo@gmail.com" maxlength="40" minlength="6" required>
                                             </div>
                                             <div class="col-sm-6 mb-2">
-                                                    <input name="matricula" type="number" class="form-control form-control-user" placeholder="Matricula" required>
-                                            </div>
-                                            <div class="col-sm-6 mb-2">
-                                                <select name="rol" aria-controls="dataTable" class="form-control form-control-sm" required>
-                                                    <option>Sin rol</option>
-                                                    <option value="Profesor">Profesor</option>
-                                                    <option value="Administrador">Administrador</option>
-                                                </select>
-                                            </div>
+                                                <select id="rol" is="mi-select"
+                                                data-textodenull="-- Sin Rol --"
+                                                name="dataTable_length" aria-controls="dataTable" 
+                                                class="form-control form-control-sm" required></select>
                                         </div>
-                                <a href="listaProfesores.html" class="btn btn-info btn-icon-split">
-                                    <span class="icon text-white-50">
-                                      <i class="fas fa-arrow-left"></i>
-                                    </span>
-                                    <span class="text">Cancelar</span>
-                                  </a>
-                                <button type="submit" class="btn btn-warning btn-icon-split">
-                                    <span class="icon text-white-50">
-                                      <i class="fas fa-pen"></i>
-                                    </span>
-                                    <span  class="text">Modificar</span>
-                                </button>
-                                <button type="button" id="eliminar" class="btn btn-danger btn-icon-split">
-                                    <span class="icon text-white-50">
-                                      <i class="fas fa-trash-alt"></i>
-                                    </span>
-                                    <span  class="text">Eliminar</span>
-                                </button>
+                                        </div>
                             </form>
                         </div>
                     </div>
@@ -236,15 +218,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../../js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="../../vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="../../js/demo/chart-area-demo.js"></script>
-    <script src="../../js/demo/chart-pie-demo.js"></script>
-    
-    <script src="../../js/Administrador/ctrlProfesor.js" type="module"></script>
 
 </body>
 

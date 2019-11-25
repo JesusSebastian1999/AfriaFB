@@ -24,13 +24,15 @@
     <!-- Custom styles for this template-->
     <link href="../../css/sb-admin-2.css" rel="stylesheet">
 
-    <script src="../../lib/polycustom.js"></script>
+    <script src="../../js/lib/polycustom.js"></script>
     <script type="module" src="../../js/Administrador/ctrlMenuAdmin.js"></script>
     <script src="/__/firebase/7.2.0/firebase-app.js"></script>
     <script src="/__/firebase/7.2.0/firebase-firestore.js"></script>
     <script src="/__/firebase/init.js"></script>
    <script src="/__/firebase/6.0.2/firebase-auth.js"></script>
-    <script src="../../js/Administrador/ctrlProfesorNuevo.js" type="module"></script>
+   <script type="module" src="../../js/cmp/mi-lista.js"></script>
+   <script type="module" src="../../js/cmp/herramientas-maestras.js"></script>
+   <script type="module" src="../../js/Administrador/ctrl/CtrlProfesores.js"></script>
 </head>
 
 <body id="page-top">
@@ -142,70 +144,9 @@
                             <!--TABLA DONDE SE MUESTRA LOS GRUPOS EXISTENTES-->
                             <div id="tablaP" class="rot table-responsive">
 
-                                <table  class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Profesores</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tb">
-                                        <td><progress max="100">Cargando…</progress></td>
-                                    </tbody>
-                                </table>
-                                <button onclick="Mostrar();" class="btn btn-success btn-icon-split">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-plus"></i>
-                                    </span>
-                                    <span class="text">Agregar</span>
-                                </button>
-                            </div>
-                            <!--TERMINO DE LA TABLA DE LISTAR GRUPOS-->
-                            <script>
-                                function Mostrar(){
-                                    document.getElementById("vista").style.display="block";
-                                    document.getElementById("tablaP").style.display="none";
-                                }
-                            </script>
-                            <!--FORMULARIO PARA INGRESAR UN NUEVO GRUPO-->
-                            <form id="vista" name="vista" class="user" style="display: none">
-                                <div class="form-group row mb-4">
-                                        <div class="col-sm-6 mb-2">
-                                                <input name="nombres" type="text" class="form-control form-control-user" placeholder="Nombre(s)" required>
-                                            </div>
-                                            <div class="col-sm-6 mb-2">
-                                                <input name="apellido_paterno" type="text" class="form-control form-control-user" placeholder="Apellido Paterno" required>
-                                            </div>
-                                            <div class="col-sm-6 mb-2">
-                                                    <input name="apellido_materno" type="text" class="form-control form-control-user" placeholder="Apellido Materno" required>
-                                            </div>
-                                            <div class="col-sm-6 mb-2">
-                                                <input name="email" type="email" class="form-control form-control-user" placeholder="Correo" required>
-                                            </div>
-                                            <div class="col-sm-6 mb-2">
-                                                    <input name="matricula" type="number" class="form-control form-control-user" placeholder="Matricula" required>
-                                            </div>
-                                            <div class="col-sm-6 mb-2">
-                                                <select name="rol" aria-controls="dataTable" class="form-control form-control-sm" required>
-                                                    <option>Sin rol</option>
-                                                    <option value="Profesor">Profesor</option>
-                                                    <option value="Administrador">Administrador</option>
-                                                </select>
-                                            </div>
-                                </div>
-                                <a href="listaGrupo.html" class="btn btn-info btn-icon-split">
-                                    <span class="icon text-white-50">
-                                      <i class="fas fa-arrow-left"></i>
-                                    </span>
-                                    <span class="text">Cancelar</span>
-                                  </a>
-                                <button type="submit" class="btn btn-success btn-icon-split">
-                                    <span class="icon text-white-50">
-                                      <i class="fas fa-save"></i>
-                                    </span>
-                                    <span class="text">Guardar</span>
-                                </button>
-                            </form>
-                            <!--FIN DEL FORMULARIO-->
+                                <header is="herramientas-maestras"></header>
+                                    <table id="lista" class="table" is="mi-lista">
+                                    </table>
 
                         </div>
                     </div>
@@ -276,14 +217,5 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../../js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="../../vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="../../js/demo/chart-area-demo.js"></script>
-    <script src="../../js/demo/chart-pie-demo.js"></script>
-    <!--script src="control/ctrllistaAlumno.js"></script-->
-</body>
 
 </html>
